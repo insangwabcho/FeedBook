@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="feedbook">
+  <insert id="joinMember">
+    insert into member(id,password,name,reg_date,birth,pwdhint,pwdanswer) 
+    values(#{id},#{password},#{name},#{reg_date},#{birth},#{pwdhint},#{pwdanswer})
+  </insert>
+  <select id="login" resultType="servlet.db.DTO">
+    select * from member
+    where id=#{id} and password=#{password}
+  </select>
+  <select id="getfeeds" resultType="servlet.db.FeedDTO">
+    select * from feed where 
+  </select>
+</mapper>
