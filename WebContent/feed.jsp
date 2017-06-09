@@ -18,35 +18,25 @@
 }
 </style>
 <script>
-  
   $(function() {
     $("#subLogin").attr("method", "post");
     $("#subLogin").attr("action", "${path}/servlet/login.do");
+    init();
+  })
+
+  function logOut() {
+    location.href = "${path}/servlet/logout.do";
+  }
+
+  function init() {
     $.ajax({
-      type: "post",
-      url: "${path}/servlet/getlist.do",
-      success: function(result){
+      type : "post",
+      url : "${path}/servlet/getfeed.do",
+      success : function(result) {
         $("#feedResult").html(result);
       }
-    })
-  })
-  
-  function logOut(){
-    location.href="${path}/servlet/logout.do";
+    });
   }
-  
-  function init(){
-    var param= "ea=4";
-    $.ajax({
-      type: "post",
-      url: "${path}/servlet/getfeed.do",
-      data: param,
-      success: function(result){
-        $("#feedcontent").html(result);
-      }
-    })
-  }
-  
 </script>
 </head>
 
@@ -129,7 +119,7 @@
           <table class="none" style="width: 55%; margin-left: 45%;">
             <tr>
               <td colspan="2"><b>${sessionScope.login.name}</b> 님 로그인중...<br> 어서오세요 <b>FeedBook</b> 입니다 반가워요!!</td>
-              <td><button class="btn-default" style="margin-top:5%;" onclick="logOut()">LogOut</button>
+              <td><button class="btn-default" style="margin-top: 5%;" onclick="logOut()">LogOut</button>
               <td align="right">
                 <button class="btn-default" style="margin-top: 5%; margin-right: 5%">Write</button>
               </td>
@@ -155,71 +145,29 @@
       </div>
       <p></p>
       <!-- Post -->
-      <article class="post">
-        <header>
-          <div class="title">
-            <h2>
-              <!-- title -->
-              <a href="#">Magna sed adipiscing</a>
-            </h2>
-            <p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-          </div>
-          <div class="meta">
-            <!-- profile -->
-            <time class="published" datetime="2015-11-01">November 1, 2015</time>
-            <a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
-          </div>
-        </header>
-        <!-- photo -->
-        <span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-        <!-- content -->
-        <!-- <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat.
-          Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent
-          tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non
-          fringilla.</p>
-        <p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam.
-          Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet.
-          Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per
-          conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula.
-          Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta
-          augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet
-          tortor pellentesque, non placerat neque viverra.</p> -->
-          
-          <div id="feedcontent"></div>
-          
-        <!-- 좋아요,답글,덧글 기능 -->
-        <footer>
-          <ul class="stats">
-            <li><a href="#">General</a></li>
-            <li><a href="#" class="icon fa-heart">28</a></li>
-            <li><a href="#" class="icon fa-comment">128</a></li>
-          </ul>
-        </footer>
-      </article>
+
+      <div id="feedResult"></div>
+
+      <!-- Footer -->
+      <section id="footer">
+        <ul class="icons">
+          <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+          <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+          <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+          <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+          <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; Untitled. Design: ZZO.</p>
+      </section>
 
     </div>
 
-    <!-- Footer -->
-    <section id="footer">
-      <ul class="icons">
-        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
-      </ul>
-      <p class="copyright">&copy; Untitled. Design: ZZO.</p>
-    </section>
-
-  </div>
-
-  <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/skel.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-  <script src="assets/js/main.js"></script>
-
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

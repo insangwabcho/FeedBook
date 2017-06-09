@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import servlet.db.DAO;
 import servlet.db.DTO;
+import servlet.db.FeedDTO;
 
 @WebServlet("/servlet/*")
-public class Controller extends HttpServlet {
+public class FeedController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,7 +73,14 @@ public class Controller extends HttpServlet {
       session.removeAttribute("login");
       response.sendRedirect(request.getContextPath()+"/feed.jsp");
     } else if (url.indexOf("getfeed.do")!= -1){
-      
+      System.out.println("dd");
+      HttpSession session= request.getSession();
+      session.setAttribute("feedCount", 3);
+      List<FeedDTO> lists= dao.getInit();
+      System.out.println(lists.toString());
+      request.setAttribute("init", lists);
+      RequestDispatcher rd= request.getRequestDispatcher("feed_detail.jsp");
+      rd.forward(request, response);
     }
 
   }

@@ -49,12 +49,14 @@ public class DAO {
 //    return result;
 //  }
   
-  public List<FeedDTO> getList(){
+  public List<FeedDTO> getInit(){
     List<FeedDTO> lists= new ArrayList<>();
     SqlSession conn= null;
+    Map map= new HashMap<>();
+    map.put("foo", "no >0 and no< 4");
     try {
       conn= MybatisManager.getInstance().openSession();
-      lists= conn.selectList("feedbook.getfeeds",null);
+      lists= conn.selectList("feedbook.init",map);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
