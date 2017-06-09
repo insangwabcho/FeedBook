@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <environment id="">
       <transactionManager type="JDBC" />
       <dataSource type="JNDI">
-        <property name="data_source" value="java:comp/env/jdbc/sqlite" />
+        <property name="data_source" value="java:comp/env/jdbc/sqliteFeedbook" />
       </dataSource>
     </environment>
   </environments>
